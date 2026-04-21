@@ -1,7 +1,6 @@
 <?php
 
 class Database {
-
     private $host = "localhost";
     private $dbname = "webdev_project";
     private $username = "root";
@@ -12,7 +11,7 @@ class Database {
         if ($this->connection === null) {
             try {
                 $this->connection = new PDO(
-                    "mysql:host={$this->host};dbname={$this->dbname}",
+                    "mysql:host={$this->host};dbname={$this->dbname};charset=utf8",
                     $this->username,
                     $this->password
                 );
