@@ -29,34 +29,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "All fields required.";
     }
 }
+
+
+require_once "includes/header.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-<h2>Register</h2>
+        <div class="card shadow p-4">
 
-<p><?php echo htmlspecialchars($message); ?></p>
+            <h2 class="mb-4">Register</h2>
 
-<form method="POST">
-    Username:<br>
-    <input type="text" name="username" required><br><br>
+            <?php if ($message): ?>
+                <div class="alert alert-info">
+                    <?php echo htmlspecialchars($message); ?>
+                </div>
+            <?php endif; ?>
 
-    Email:<br>
-    <input type="email" name="email" required><br><br>
+            <form method="POST">
 
-    Password:<br>
-    <input type="password" name="password" required><br><br>
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text"
+                           name="username"
+                           class="form-control"
+                           required>
+                </div>
 
-    <button type="submit">Register</button>
-</form>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           required>
+                </div>
 
-<a href="login.php">Go to Login</a>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password"
+                           name="password"
+                           class="form-control"
+                           required>
+                </div>
 
-</body>
-</html>
+                <button type="submit"
+                        class="btn btn-success w-100">
+                    Register
+                </button>
+
+            </form>
+
+            <div class="mt-3 text-center">
+                <a href="login.php">
+                    Go to Login
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<?php require_once "includes/footer.php"; ?>

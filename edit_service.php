@@ -2,8 +2,11 @@
 session_start();
 require_once "classes/Service.php";
 
-if (!isset($_SESSION["username"])) {
-    header("Location: login.php");
+if (
+    !isset($_SESSION["username"]) ||
+    $_SESSION["role"] !== "admin"
+) {
+    header("Location: index.php");
     exit();
 }
 
@@ -36,16 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "Please fill in all fields.";
     }
 }
+require_once "includes/header.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
+<h2 class="mb-4">Edit Service</h2>
     <title>Edit Service</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
-    <h2>Edit Service</h2>
+
 
     <?php if ($message): ?>
         <div class="alert alert-info"><?php echo $message; ?></div>
@@ -65,5 +67,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="submit" class="btn btn-warning">Update Service</button>
         <a href="dashboard.php" class="btn btn-secondary">Back</a>
     </form>
-</body>
-</html>
+<?php require_once "includes/footer.php"; ?>
